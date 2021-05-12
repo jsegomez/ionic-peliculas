@@ -12,6 +12,9 @@ import { TitlesComponent } from './titles/titles.component';
 import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
+  entryComponents: [
+    ModalComponent
+  ],
   declarations: [
     SlideshowBdComponent,
     SlideshowPpComponent,

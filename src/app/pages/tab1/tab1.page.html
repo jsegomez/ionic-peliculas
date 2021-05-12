@@ -12,12 +12,12 @@
 
 
   <app-titles [title]="'Populares'"></app-titles>
-  <app-slideshow-pp [popular]="popular" (addMovies)="addMovies('popular')"></app-slideshow-pp>
+  <app-slideshow-pp [popular]="popular" (ionSlideReachEnd)="addMovies('popular')"></app-slideshow-pp>
 
   <app-titles [title]="'Más votadas'"></app-titles>
-  <app-slideshow-pp [popular]="topRated" (addMovies)="addMovies('top')"></app-slideshow-pp>
+  <app-slideshow-pp [popular]="topRated" (ionSlideReachEnd)="addMovies('top')"></app-slideshow-pp>
 
   <app-titles [title]="'Próximamente'"></app-titles>
-  <app-slideshow-pp [popular]="upComing" (addMovies)="addMovies('upcoming')"></app-slideshow-pp>
+  <app-slideshow-pp [popular]="upComing" (ionSlideReachEnd)="addMovies('upcoming')"></app-slideshow-pp>
   
 </ion-content>

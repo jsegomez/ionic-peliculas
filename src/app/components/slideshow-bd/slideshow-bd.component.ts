@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Movie } from '../../interfaces/movie.interface';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-slideshow-bd',
@@ -8,11 +10,11 @@ import { Movie } from '../../interfaces/movie.interface';
 })
 export class SlideshowBdComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {}
-
-  @Input() nowPlaying: Movie[] = [];
 
   slideOpts = {
     slidesPerView: 1,
@@ -20,4 +22,16 @@ export class SlideshowBdComponent implements OnInit {
     speed: 400
   }
 
+  @Input() nowPlaying: Movie[] = [];
+
+  async showDetail(id: number){
+    const modal= await this.modalCtrl.create({
+      component: ModalComponent,
+      componentProps:{
+        id
+      }
+    });
+
+    modal.present();
+  }
 }
