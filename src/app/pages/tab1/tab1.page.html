@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3 class="titleCustom">En cines</h3>
+      </ion-col>      
+    </ion-row>
+  </ion-grid>
+
+  <app-slideshow-bd [nowPlaying]="nowPlaying"></app-slideshow-bd>
+
+
+  <app-titles [title]="'Populares'"></app-titles>
+  <app-slideshow-pp [popular]="popular" (addMovies)="addMovies('popular')"></app-slideshow-pp>
+
+  <app-titles [title]="'Más votadas'"></app-titles>
+  <app-slideshow-pp [popular]="topRated" (addMovies)="addMovies('top')"></app-slideshow-pp>
+
+  <app-titles [title]="'Próximamente'"></app-titles>
+  <app-slideshow-pp [popular]="upComing" (addMovies)="addMovies('upcoming')"></app-slideshow-pp>
+  
+</ion-content>

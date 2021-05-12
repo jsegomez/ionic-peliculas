@@ -1,0 +1,14 @@
+<ion-slides [options]="slideOpts" mode="ios">
+  <ion-slide *ngFor="let movie of popular">
+    <ion-card>
+      <img [src]=" movie.poster_path | image " alt="" class="poster">
+    </ion-card>
+  </ion-slide>
+
+  <ion-slide class="icon-add">
+    <ion-button expand="full" size="small" (click)="nextPage()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-slide>
+</ion-slides>
+
