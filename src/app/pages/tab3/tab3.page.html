@@ -10,7 +10,9 @@
 
   <!-- <app-slideshow-pp [popular]="favoritesList"></app-slideshow-pp> -->
 
-  <ion-list>
+  <ion-title *ngIf="favoritesList.length == 0">No tienes peliculas en tus favoritos</ion-title>
+
+  <ion-list *ngIf="favoritesList.length > 0">
     <ion-item *ngFor="let movie of favoritesList">
       <ion-card (click)="showDetail(movie.id)">
         <img [src]="movie.backdrop_path | image" />

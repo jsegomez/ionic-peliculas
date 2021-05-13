@@ -21,13 +21,14 @@ export class DataLocalService {
   movies: MovieDetail[] = [];
   
   // Inicializando la base de datos
-  async initDB(){    
+  async initDB(){
     const storage = await this.storage.create();
     this._storage = storage;    
+    this.setNewMovie$.emit(true);
   }
 
   // Cargando favoritos
-  async cargarFavoritos(){
+  async cargarFavoritos(){    
     const movies = await this.storage.get('movies');
     this.movies = movies || [];    
     return movies;
@@ -45,6 +46,7 @@ export class DataLocalService {
   saveMovie(movie: MovieDetail){
     let exist: boolean = false;
     let message: string = '';
+    this.setNewMovie$.emit(true);
 
     for (let mv of this.movies) {      
       if(mv.id === movie.id){

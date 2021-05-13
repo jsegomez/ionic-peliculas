@@ -24,14 +24,17 @@ export class Tab3Page implements OnInit{
   favoritesList: Movie[] = [];
 
   async getFavorites(){    
-    this.favoritesList = await this.dataLocal.cargarFavoritos();    
+    this.favoritesList = await this.dataLocal.cargarFavoritos() || [];
   }
 
   getNewMovies(){
     this.dataLocal.setNewMovie$.subscribe(
-      response => this.getFavorites()
+      response => {
+        this.getFavorites();        
+      }
     )
   }
+
   async showDetail(id: number){
     const modal= await this.modalCtrl.create({
       component: ModalComponent,
