@@ -3,6 +3,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 import { MovieDetail } from '../../interfaces/movie-detail.interface';
 import { Cast } from '../../interfaces/actor.interface';
 import { ModalController } from '@ionic/angular';
+import { DataLocalService } from '../../services/data-local.service';
 
 @Component({
   selector: 'app-modal',
@@ -13,17 +14,19 @@ export class ModalComponent implements OnInit {
 
   constructor(
     private movieService: MoviesService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private dataLocal: DataLocalService,    
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getDetailsMovie();
-    this.getCast()
+    this.getCast();
+    this.existMovieFav = await this.dataLocal.existMovie(this.id);    
   }
 
   @Input() id;
-
   movieDetails: MovieDetail;
+  existMovieFav: boolean = false;
   cast: Cast[] = [];
   slideActores = {
     slidesPerView: 3,
@@ -47,6 +50,9 @@ export class ModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  favoritos(){}
+  async favoritos(){
+    await this.dataLocal.saveMovie(this.movieDetails);
+    this.existMovieFav = await this.dataLocal.existMovie(this.movieDetails.id);    
+  }
 
 }

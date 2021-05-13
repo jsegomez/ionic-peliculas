@@ -87,7 +87,8 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="favoritos()">
-        <ion-icon slot="start" name="heart-sharp"></ion-icon>
+        <ion-icon slot="start" name="heart-sharp" *ngIf="existMovieFav"></ion-icon>
+        <ion-icon slot="start" name="heart-outline" *ngIf="existMovieFav == false"></ion-icon>
         <ion-label>Favorito</ion-label>
       </ion-button>
     </ion-buttons>
